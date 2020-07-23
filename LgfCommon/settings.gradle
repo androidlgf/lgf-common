@@ -1,1 +1,6 @@
-include ':app', ':commlibrary'
+rootProject.name='LgfCommon'
+include ':app'
+include ':commonlibrary'
+include ':module_home'
+include ':module_news'
+include ':module_main'
