@@ -5,6 +5,8 @@ if (isModule.toBoolean()) {
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'android-aspectjx'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion build_versions.target_sdk
@@ -26,7 +28,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    //指定jdk版本
+    compileOptions {
+        sourceCompatibility = "1.8"
+        targetCompatibility = "1.8"
+    }
     sourceSets {
         main {
             if (isModule.toBoolean()) {
@@ -39,6 +45,9 @@ android {
                 }
             }
         }
+    }
+    dataBinding {
+        enabled true
     }
 }
 

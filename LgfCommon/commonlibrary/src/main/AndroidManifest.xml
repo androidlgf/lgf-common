@@ -12,4 +12,15 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.PHONE_STATE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <application
+            android:theme="@style/AppTheme">
+        <activity android:name=".aspect.permission.permissiondispatcher.ShadowPermissionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>
