@@ -3,6 +3,7 @@ package com.cn.lgf.common.http.base;
 import com.cn.lgf.common.http.priority.Priority;
 import com.cn.lgf.common.http.utils.RequestIDHelper;
 
+import java.io.InputStream;
 import java.util.Map;
 
 /**
@@ -24,17 +25,17 @@ public abstract class Request {
     //请求优先级
     private Priority mPriority = Priority.NORMAL;
     //请求ID标识
-    public int mRequestId;
+    public int requestId;
     //请求URL
-    public String mUrl;
+    public String url;
     //请求参数
-    public Map<String, String> mParams;
+    public Map<String, String> params;
     //请求头
-    public Map<String, String> mHeaders;
+    public Map<String, String> headers;
     //请求方式
-    public RequestType mRequestType;
+    public RequestType requestType;
     //请求缓存类型
-    public RequestCacheType mCacheType;
+    public RequestCacheType cacheType;
     //请求是否需要缓存
     public boolean needCache = false;
     //请求失败是否重试
@@ -42,7 +43,7 @@ public abstract class Request {
     //请求是否上报
     public boolean needReport = false;
     //重试次数
-    public int mRetryCount = 0;
+    public int retryCount = 0;
     //请求是否加密
     public boolean isEncrypted = false;
     //缓存key
@@ -51,13 +52,13 @@ public abstract class Request {
     public Request() {
     }
 
-    public Request(String url, RequestType method, RequestCacheType defaultCacheType, Map<String, String> headers, Map<String, String> params) {
-        this.mUrl = url;
-        this.mParams = params;
-        this.mHeaders = headers;
-        this.mRequestType = method;
-        this.mCacheType = defaultCacheType;
-        this.mRequestId = RequestIDHelper.INSTANCE.createRequestId();
+    public Request(String url, RequestType method, InputStream input, RequestCacheType defaultCacheType, Map<String, String> headers, Map<String, String> params) {
+        this.url = url;
+        this.params = params;
+        this.headers = headers;
+        this.requestType = method;
+        this.cacheType = defaultCacheType;
+        this.requestId = RequestIDHelper.INSTANCE.createRequestId();
     }
 
     /***
@@ -65,7 +66,7 @@ public abstract class Request {
      * @param url
      */
     public void setUrl(String url) {
-        this.mUrl = url;
+        this.url = url;
     }
 
     /**
@@ -74,7 +75,7 @@ public abstract class Request {
      * @param params
      */
     public void setParams(Map<String, String> params) {
-        this.mParams = params;
+        this.params = params;
     }
 
     /***
@@ -82,7 +83,7 @@ public abstract class Request {
      * @param headers
      */
     public void setHeaders(Map<String, String> headers) {
-        this.mHeaders = headers;
+        this.headers = headers;
     }
 
     /***
@@ -90,7 +91,7 @@ public abstract class Request {
      * @param requestType
      */
     public void setRequestType(RequestType requestType) {
-        this.mRequestType = requestType;
+        this.requestType = requestType;
     }
 
     /***
@@ -98,7 +99,7 @@ public abstract class Request {
      * @param cacheType
      */
     public void setCacheType(RequestCacheType cacheType) {
-        this.mCacheType = cacheType;
+        this.cacheType = cacheType;
     }
 
     /***
@@ -118,7 +119,7 @@ public abstract class Request {
      */
     public void needRetry(boolean needRetry) {
         this.needRetry = needRetry;
-        this.mRetryCount = RETRY_COUNT;
+        this.retryCount = RETRY_COUNT;
     }
 
     /***
