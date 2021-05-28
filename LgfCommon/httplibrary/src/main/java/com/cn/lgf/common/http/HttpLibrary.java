@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import com.cn.lgf.common.http.base.IRequestConnect;
 
 public class HttpLibrary {
-    private volatile HttpLibrary INSTANCE;
+    private static volatile HttpLibrary INSTANCE;
 
-    public HttpLibrary getInstance() {
+    public static HttpLibrary getInstance() {
         if (INSTANCE == null) {
             synchronized (HttpLibrary.class) {
                 //double checking Singleton instance
