@@ -6,8 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.cn.lgf.common.http.base.RequestConnect;
-import com.cn.lgf.common.http.debug.HttpDebugLog;
+import com.cn.lgf.common.http.debug.HttpLog;
 import com.cn.lgf.common.http.utils.AsyncTaskHelper;
 import com.cn.lgf.common.http.utils.IOHelper;
 
@@ -124,7 +123,7 @@ public class FileUploadHelper {
             //刷新数据到流中
             dataOutputStream.flush();
         } catch (Exception e) {
-            HttpDebugLog.i("FileUpload", e.getMessage());
+            HttpLog.i("FileUpload", e.getMessage());
         }
     }
 
@@ -164,7 +163,7 @@ public class FileUploadHelper {
 
         } catch (Exception e) {
             responeContent = "";
-            HttpDebugLog.i("FileUpload", "upload file res");
+            HttpLog.i("FileUpload", "upload file res");
         } finally {
             IOHelper.close(bufferedReader);
             IOHelper.close(connection);
@@ -189,7 +188,7 @@ public class FileUploadHelper {
                 outputStream.write(bytes, 0, length);
             }
         } catch (Exception e) {
-            HttpDebugLog.i("FileUploadHelper", "read File error");
+            HttpLog.i("FileUploadHelper", "read File error");
         } finally {
             IOHelper.close(fileInputStream);
         }
@@ -215,7 +214,7 @@ public class FileUploadHelper {
             //设置内容上传类型（multipart/form-data），这步是关键
             httpURLConnection.setRequestProperty("Content-Type", PROTOCOL_CONTENT_TYPE);
         } catch (Exception e) {
-            HttpDebugLog.i("FileUploadHelper", url + " open HttpUrlConnection error");
+            HttpLog.i("FileUploadHelper", url + " open HttpUrlConnection error");
         }
         return httpURLConnection;
     }
@@ -242,7 +241,7 @@ public class FileUploadHelper {
             String s = builder.toString();
             return s.getBytes(PROTOCOL_CHARSET);
         } catch (Exception e) {
-            HttpDebugLog.i("FileUploadHelper", " getFileHead error " + e.getMessage());
+            HttpLog.i("FileUploadHelper", " getFileHead error " + e.getMessage());
         }
         return null;
     }
@@ -261,7 +260,7 @@ public class FileUploadHelper {
             String s = builder.toString();
             return s.getBytes(PROTOCOL_CHARSET);
         } catch (Exception e) {
-            HttpDebugLog.i("FileUploadHelper", " getFileFoot error " + e.getMessage());
+            HttpLog.i("FileUploadHelper", " getFileFoot error " + e.getMessage());
         }
 
         return null;

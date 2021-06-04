@@ -3,6 +3,8 @@ package com.cn.lgf.common.http.base;
 import androidx.annotation.Nullable;
 
 import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ProjectName: LgfCommon
@@ -53,4 +55,12 @@ public interface IResponse {
      * @return
      */
     int getHttpCode();
+
+    /**
+     * 请求Http Headers
+     *
+     * @return
+     */
+    @Nullable
+    Map<String, List<String>> getResponseHeaders();
 }

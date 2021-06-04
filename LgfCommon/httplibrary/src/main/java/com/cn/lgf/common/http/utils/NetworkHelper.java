@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 
-import com.cn.lgf.common.http.debug.HttpDebugLog;
+import com.cn.lgf.common.http.debug.HttpLog;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -56,7 +56,7 @@ public class NetworkHelper {
                 strNetworkType = "WIFI";
             } else if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
                 String _strSubTypeName = networkInfo.getSubtypeName();
-                HttpDebugLog.i("cocos2d-x", "Network getSubtypeName : " + _strSubTypeName);
+                HttpLog.i("cocos2d-x", "Network getSubtypeName : " + _strSubTypeName);
                 // TD-SCDMA   networkType is 17
                 int networkType = networkInfo.getSubtype();
                 switch (networkType) {
@@ -117,7 +117,7 @@ public class NetworkHelper {
                 }
             }
         } catch (Exception ex) {
-            HttpDebugLog.e(TAG, ex);
+            HttpLog.e(TAG, ex);
         }
         return localIPAddress;
     }

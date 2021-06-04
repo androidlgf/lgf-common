@@ -1,13 +1,11 @@
 package com.cn.lgf.common.http.base;
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.cn.lgf.common.http.HttpApp;
-import com.cn.lgf.common.http.debug.HttpDebugLog;
+import com.cn.lgf.common.http.debug.HttpLog;
 import com.cn.lgf.common.http.exception.HttpException;
 import com.cn.lgf.common.http.interf.Method;
 import com.cn.lgf.common.http.priority.HttpPriorityTask;
@@ -54,7 +52,7 @@ public class RequestConnect {
             } else {
                 request = buildRequestParams(request);
             }
-            HttpDebugLog.i(TAG, "start Request, Url = " + request.url);
+            HttpLog.i(TAG, "start Request, Url = " + request.url);
             mRequestConnect.connect(request, new RequestHandler(handler, mHttpResponsePlugin != null ? mHttpResponsePlugin.call() : null));
 
         } catch (Exception e) {
@@ -79,7 +77,7 @@ public class RequestConnect {
         } else {
             request = buildRequestParams(request);
         }
-        HttpDebugLog.i(TAG, "start Request, Url = " + request.url);
+        HttpLog.i(TAG, "start Request, Url = " + request.url);
         return mRequestConnect.syncConnect(request);
     }
 
@@ -110,11 +108,11 @@ public class RequestConnect {
      */
     public boolean abort(Request request) {
         if (mRequestConnect == null) {
-            HttpDebugLog.w("connect can't be null, please check");
+            HttpLog.w("connect can't be null, please check");
             return false;
         }
         if (request == null) {
-            HttpDebugLog.w("request can't be null, please check");
+            HttpLog.w("request can't be null, please check");
             return false;
         }
         return abort(request.requestId);
@@ -156,15 +154,15 @@ public class RequestConnect {
      */
     private void checkRequestValid(Request request, IRequestConnect connect) throws Exception {
         if (connect == null) {
-            HttpDebugLog.w("connect can't be null, please check");
+            HttpLog.w("connect can't be null, please check");
             throw new HttpException("connect can't be null, please check");
         }
         if (request == null) {
-            HttpDebugLog.w("request can't be null, please check");
+            HttpLog.w("request can't be null, please check");
             throw new HttpException("request can't be null, please check");
         }
         if (TextUtils.isEmpty(request.url) || TextUtils.isEmpty(request.url.trim())) {
-            HttpDebugLog.w("request url can't be null, please check");
+            HttpLog.w("request url can't be null, please check");
             throw new HttpException("request url can't be null, please check");
         }
 //        request.url = parseUrl(request.url);
@@ -173,7 +171,7 @@ public class RequestConnect {
 //            throw new HttpException("request url is invalid, please check");
 //        }
         if (!NetworkHelper.isNetworkAvailable(HttpApp.getContext())) {
-            HttpDebugLog.w("network is invalid, please check");
+            HttpLog.w("network is invalid, please check");
             throw new HttpException("network is invalid, please check");
         }
     }
@@ -355,7 +353,7 @@ public class RequestConnect {
                 }
             } catch (Exception ex) {
                 // 重试异常忽略掉，直接回调业务标识出错就好。
-                HttpDebugLog.e(TAG, ex);
+                HttpLog.e(TAG, ex);
             }
             if (mHandler != null) {
                 mHandler.requestError(request, e);

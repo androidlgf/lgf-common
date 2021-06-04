@@ -4,8 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.cn.lgf.common.http.debug.HttpDebugLog;
+import com.cn.lgf.common.http.debug.HttpLog;
 import com.cn.lgf.common.http.exception.DBException;
 
 /**
@@ -32,7 +31,7 @@ public class DBHandler {
         try {
             dbHelper.close();
         } catch (Exception e) {
-            HttpDebugLog.i(TAG, e);
+            HttpLog.i(TAG, e);
         }
     }
 
@@ -83,6 +82,9 @@ public class DBHandler {
         return isOpen;
     }
 
+    /**
+     * 开启一个事务
+     */
     public void beginTransaction() {
         try {
             if (db != null) {
@@ -93,6 +95,9 @@ public class DBHandler {
         }
     }
 
+    /**
+     * 提交一个事务
+     */
     public void commitTransaction() {
         try {
             if (db != null) {
@@ -103,6 +108,10 @@ public class DBHandler {
         }
     }
 
+    /***
+     * 结束一个事务
+     * 若endTransaction前，未触发setTransactionSuccessful，则回滚，否则提交事务
+     */
     public void endTransaction() {
         try {
             if (db != null) {
@@ -113,6 +122,13 @@ public class DBHandler {
         }
     }
 
+    /**
+     * 查询数据
+     *
+     * @param sql
+     * @param selectionArgs
+     * @return
+     */
     public Cursor query(String sql, String[] selectionArgs) {
         Cursor cursor = null;
         try {
@@ -125,6 +141,12 @@ public class DBHandler {
         return cursor;
     }
 
+    /**
+     * 查询数据
+     *
+     * @param sql
+     * @return
+     */
     public Cursor query(String sql) {
         Cursor cursor = null;
         try {
@@ -137,6 +159,20 @@ public class DBHandler {
         return cursor;
     }
 
+    /**
+     * 查询数据
+     *
+     * @param distinct
+     * @param table
+     * @param columns
+     * @param selection
+     * @param selectionArgs
+     * @param groupBy
+     * @param having
+     * @param orderBy
+     * @param limit
+     * @return
+     */
     public Cursor query(boolean distinct, String table, String[] columns,
                         String selection, String[] selectionArgs, String groupBy,
                         String having, String orderBy, String limit) {
@@ -150,6 +186,16 @@ public class DBHandler {
         return cursor;
     }
 
+    /**
+     * 查询数据
+     *
+     * @param table
+     * @param columns
+     * @param selection
+     * @param selectionArgs
+     * @param orderBy
+     * @return
+     */
     public Cursor query(String table, String[] columns, String selection,
                         String[] selectionArgs, String orderBy) {
         Cursor cursor = null;
@@ -164,6 +210,12 @@ public class DBHandler {
         return cursor;
     }
 
+    /**
+     * 执行SQL
+     *
+     * @param sql
+     * @throws SQLException
+     */
     public void execute(String sql) throws SQLException {
         try {
             if (db != null) {
@@ -174,6 +226,13 @@ public class DBHandler {
         }
     }
 
+    /**
+     * 插入数据
+     *
+     * @param table
+     * @param contentValues
+     * @return
+     */
 
     public long insert(String table, ContentValues contentValues) {
         long result;
@@ -185,6 +244,15 @@ public class DBHandler {
         return result;
     }
 
+    /**
+     * 更新数据
+     *
+     * @param table
+     * @param contentValues
+     * @param whereClause
+     * @param whereArgs
+     * @return
+     */
     public int update(String table, ContentValues contentValues,
                       String whereClause, String[] whereArgs) {
         int result = 0;
@@ -196,6 +264,14 @@ public class DBHandler {
         return result;
     }
 
+    /**
+     * 删除数据
+     *
+     * @param table
+     * @param whereClause
+     * @param whereArgs
+     * @return
+     */
     public int delete(String table, String whereClause, String[] whereArgs) {
         int result;
         try {

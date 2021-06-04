@@ -1,6 +1,5 @@
 package com.cn.lgf.common.http.utils;
 
-import android.net.VpnService;
 import android.os.Handler;
 import android.os.Looper;
 

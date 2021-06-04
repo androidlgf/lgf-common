@@ -1,7 +1,4 @@
 package com.cn.lgf.common.http;
-
-import android.content.Context;
-
 import com.cn.lgf.common.http.base.IRequestConnect;
 import com.cn.lgf.common.http.base.RequestConnect;
 import com.cn.lgf.common.http.urlconnection.HttpUrlConnectionHelper;

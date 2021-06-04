@@ -1,9 +1,4 @@
 package com.cn.lgf.common.http.base;
-
-import android.content.Context;
-
-import androidx.annotation.NonNull;
-
 import com.cn.lgf.common.http.HttpApp;
 import com.cn.lgf.common.http.utils.ApkVersionCodeHelper;
 import com.cn.lgf.common.http.utils.HttpDefaultHeadersHelper;

@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 
 import com.cn.lgf.common.http.base.IRequestConnect;
 
+/**
+ * HttpLibrary 入口
+ */
 public class HttpLibrary {
     private static volatile HttpLibrary INSTANCE;
 

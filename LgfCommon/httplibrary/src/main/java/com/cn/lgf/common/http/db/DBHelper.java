@@ -4,7 +4,8 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.cn.lgf.common.http.debug.HttpDebugLog;
+
+import com.cn.lgf.common.http.debug.HttpLog;
 
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        HttpDebugLog.i("oldVersion=" + oldVersion + ",newVersion" + newVersion);
+        HttpLog.i("oldVersion=" + oldVersion + ",newVersion" + newVersion);
         if (newVersion <= oldVersion || sqLiteDatabase == null) {
             return;
         }

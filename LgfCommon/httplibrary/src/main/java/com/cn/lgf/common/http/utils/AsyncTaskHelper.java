@@ -3,7 +3,7 @@ package com.cn.lgf.common.http.utils;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
-import com.cn.lgf.common.http.debug.HttpDebugLog;
+import com.cn.lgf.common.http.debug.HttpLog;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -78,11 +78,11 @@ public class AsyncTaskHelper {
                                                              final IAsyncCallback<Result> asyncCallback,
                                                              Param... param) {
         if (null == doAsyncTask) {
-            HttpDebugLog.e("doAsyncTask can't be null");
+            HttpLog.e("doAsyncTask can't be null");
             return;
         }
         if (TextUtils.isEmpty(keyTask)) {
-            HttpDebugLog.e("keyTask can't be null");
+            HttpLog.e("keyTask can't be null");
             return;
         }
         AsyncTask<Param, Progress, Result> asyncTask = new CustomTask<>(keyTask, doAsyncTask, asyncCallback);

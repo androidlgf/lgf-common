@@ -2,13 +2,25 @@ package com.cn.lgf.common.http.debug;
 
 import android.util.Log;
 
-public class HttpDebugLog {
+/**
+ * @ProjectName: LgfCommon
+ * @Package: com.cn.lgf.common.utils
+ * @ClassName: DebugLog
+ * @Description: DebugLog 日志打印 默认线上环境不输出
+ * @Author: 作者名
+ * @CreateDate: 2020/7/27 4:40 下午
+ * @UpdateUser: 更新者：
+ * @UpdateDate: 2020/7/27 4:40 下午
+ * @UpdateRemark: 更新说明：
+ * @Version: 1.0
+ */
+public class HttpLog {
     //是否输出
     public static boolean needLog = false;
-    //开发环境判断 保留无效处理
-    private static boolean isDebug = false;
+    //开发环境判断  DebugState.isDebug() || DebugState.isPreView()
+    public static boolean isDebug = false;
     //Log过滤Tag
-    public static volatile String TAG = HttpDebugLog.class.getName();
+    public static volatile String TAG = "HttpLog";
     //Log Max Length
     private static int MAX_LENGTH = 2000;
 

@@ -1,6 +1,6 @@
 package com.cn.lgf.common.http.db;
 
-import com.cn.lgf.common.http.debug.HttpDebugLog;
+import com.cn.lgf.common.http.debug.HttpLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +75,7 @@ public class DBConstants {
                     + " TEXT NOT NULL,"
                     + COLUMNS[FILE_PATH]
                     + " TEXT NOT NULL)";
-            HttpDebugLog.d(getClass().getSimpleName(), " createSQL = " + sql);
+            HttpLog.d(getClass().getSimpleName(), " createSQL = " + sql);
             return sql;
         }
     }

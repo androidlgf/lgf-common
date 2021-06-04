@@ -7,17 +7,25 @@ import android.database.sqlite.SQLiteException;
 
 import androidx.annotation.NonNull;
 
-import com.cn.lgf.common.http.debug.HttpDebugLog;
+import com.cn.lgf.common.debug.DebugLog;
 import com.cn.lgf.common.http.exception.DBException;
 
 import java.util.List;
 
 public class DBController {
+    //标识
     private static final String TAG = "DBController";
+    //SQL操作实现类
     private DBHandler dbHandler;
 
     private static DBController sDbController;
 
+    /**
+     * 单利
+     *
+     * @param context
+     * @return
+     */
     public static synchronized DBController getInstance(Context context) {
         if (sDbController == null || sDbController.isNotOpen()) {
             sDbController = new DBController(context.getApplicationContext());
@@ -25,7 +33,7 @@ public class DBController {
         return sDbController;
     }
 
-    public DBController(Context context) {
+    private DBController(Context context) {
         init(context);
     }
 
@@ -38,9 +46,9 @@ public class DBController {
             try {
                 dbHandler.openDatabase();
             } catch (SQLiteException e) {
-                HttpDebugLog.e(TAG, e);
+                DebugLog.e(TAG, e);
             } catch (DBException e) {
-                HttpDebugLog.e(TAG, e);
+                DebugLog.e(TAG, e);
             }
         }
         return dbHandler;
@@ -111,7 +119,7 @@ public class DBController {
             dbHandler.commitTransaction();
             return temp >= 1;
         } catch (Exception e) {
-            HttpDebugLog.e(TAG, e);
+            DebugLog.e(TAG, e);
         } finally {
             dbHandler.endTransaction();
         }
@@ -129,7 +137,7 @@ public class DBController {
             dbHandler.delete(tableName, whereClause, whereArgs);
             dbHandler.commitTransaction();
         } catch (Exception e) {
-            HttpDebugLog.e(TAG, e);
+            DebugLog.e(TAG, e);
         } finally {
             dbHandler.endTransaction();
         }
@@ -144,7 +152,7 @@ public class DBController {
             dbHandler.delete(tableName, null, null);
             dbHandler.commitTransaction();
         } catch (Exception e) {
-            HttpDebugLog.e(TAG, e);
+            DebugLog.e(TAG, e);
         } finally {
             dbHandler.endTransaction();
         }

@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import com.cn.lgf.common.http.debug.HttpDebugLog;
+import com.cn.lgf.common.http.debug.HttpLog;
 import com.cn.lgf.common.http.utils.UIHelper;
 
 import java.util.ArrayList;
@@ -125,7 +125,7 @@ public abstract class QueueTaskRunner<Task extends QueueTaskRunner.ITask, Result
             mListener = listener;
             return startInternal(tasks);
         } catch (Exception e) {
-            HttpDebugLog.e(QueueTaskRunner.class.getName(), e);
+            HttpLog.e(QueueTaskRunner.class.getName(), e);
             return false;
         }
     }
