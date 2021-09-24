@@ -36,6 +36,7 @@ aspectjx {
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     api deps.kotlin.plugin
     api deps.androidx.appcompat
     api deps.androidx.core
@@ -54,12 +55,10 @@ dependencies {
     //AndroidX Room
     api deps.androidx.room_runtime
     kapt 'androidx.room:room-compiler:2.2.5'
-    annotationProcessor deps.androidx_lifecycle.lifecycle_compiler
-    annotationProcessor deps.androidx.room_compiler
+    kapt deps.androidx_lifecycle.lifecycle_compiler
+    kapt deps.androidx.room_compiler
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    implementation project(':httplibrary')
 }
