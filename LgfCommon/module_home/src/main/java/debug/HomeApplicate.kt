@@ -1,6 +1,6 @@
 package debug
 
-import com.cn.lgf.common.BaseApplication
+import com.cn.lgf.common.base.BaseApplication
 
 /**
  *

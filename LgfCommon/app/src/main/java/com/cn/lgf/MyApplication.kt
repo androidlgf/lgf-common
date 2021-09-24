@@ -1,6 +1,6 @@
 package com.cn.lgf
 
-import com.cn.lgf.common.BaseApplication
+import com.cn.lgf.common.base.BaseApplication
 
 class MyApplication : BaseApplication() {
 

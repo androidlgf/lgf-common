@@ -1,22 +1,25 @@
 package com.cn.lgf.module.main;
-
 import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.VideoView;
+
 import androidx.annotation.Nullable;
-import com.cn.lgf.common.aspect.log.annotations.DebugLog;
+
 import com.cn.lgf.common.aspect.permission.annotations.NeedPermission;
 import com.cn.lgf.common.crash.CrashDataBase;
 import com.cn.lgf.common.crash.CrashHandler;
 import com.cn.lgf.common.crash.entity.CrashEntity;
 import com.cn.lgf.common.databinding.DataBindingActivity;
 import com.cn.lgf.common.databinding.DataBindingConfig;
+import com.cn.lgf.common.http.HttpLibrary;
+import com.cn.lgf.module.main.http.AdHttpModel;
+import com.cn.lgf.module.main.http.VideoDownloadModel;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +35,7 @@ import java.util.List;
  * @UpdateRemark: 更新说明：
  * @Version: 1.0
  */
-//@NeedPermission(permissions = {Manifest.permission.CALL_PHONE})
+@NeedPermission(permissions = {Manifest.permission.CALL_PHONE})
 public class MainActivity extends DataBindingActivity {
     private MainActivityViewModel mainActivityViewModel;
 
@@ -50,6 +53,11 @@ public class MainActivity extends DataBindingActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        HttpLibrary.getInstance().init(this,null);
+        AdHttpModel adHttpModel=new AdHttpModel();
+        adHttpModel.startRequest();
+        VideoDownloadModel videoDownloadModel=new VideoDownloadModel(this);
+        videoDownloadModel.startDownload();
         mainActivityViewModel.name.set("1111");
         CrashEntity entity=new CrashEntity();
         entity.crashInfo="crashInfo with 123";
@@ -76,7 +84,10 @@ public class MainActivity extends DataBindingActivity {
                }
             }
         });
-
+//        VideoView videoView=findViewById(R.id.video);
+//        videoView.setVideoPath(String.valueOf(Uri.fromFile(new File(this.getCacheDir().getPath() + File.separator + "本森超跑.mp4"))));
+//        Log.i("VideoDownloadModel", "path=" + this.getCacheDir().getPath() + File.separator + "本森超跑.mp4");
+//        videoView.start();
     }
 
     @Override
