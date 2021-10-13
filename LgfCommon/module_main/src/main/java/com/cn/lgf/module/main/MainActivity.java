@@ -39,6 +39,7 @@ import java.util.List;
 public class MainActivity extends DataBindingActivity {
     private MainActivityViewModel mainActivityViewModel;
 
+    
     @Override
     protected void initViewModel() {
         mainActivityViewModel = getActivityViewModel(MainActivityViewModel.class);
